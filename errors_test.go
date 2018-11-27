@@ -16,13 +16,13 @@ var codeMessage = derrors.MsgCode{
 }
 
 func Test_Code(t *testing.T) {
-	err := CallErrTypeFn(0) // 測試套件的error
+	err := CallErrTypeFn("0") // 測試套件的error
 	if err != nil {
 		fmt.Println("返回給前端的錯誤 code :", codeMessage.GetErrorCode(err, true))
 	}
 	fmt.Println()
 
-	err = CallErrTypeFn(1) // 測試原生的error
+	err = CallErrTypeFn("1") // 測試原生的error
 	if err != nil {
 		fmt.Println("返回給前端的錯誤 code :", codeMessage.GetErrorCode(err, true))
 	}
@@ -43,9 +43,9 @@ var (
 
 // # 測試1
 
-func CallErrTypeFn(id int) error {
-	if id == 0 {
-		return ErrDataInvalid.Write("錯誤內容: 'id' 不能是預設值" + string(id))
+func CallErrTypeFn(id string) error {
+	if id != "" {
+		return ErrDataInvalid.Write("錯誤內容: 'id' 不能是預設值" + id)
 	}
 	return ErrConnect
 }

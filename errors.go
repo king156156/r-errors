@@ -54,7 +54,7 @@ func (e *Error) Write(msg string) RError {
 
 // Clear 清除
 func (e *Error) Clear() {
-	e.path, e.s, e.msg = "", "", ""
+	e.path, e.msg = "", ""
 }
 
 func generateCallerList(callerLevel int) string {

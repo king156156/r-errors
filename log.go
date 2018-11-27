@@ -5,6 +5,7 @@ import (
 	"log"
 )
 
+// Log 收集錯誤訊息
 type Log struct {
 	callerLevel int
 	writer      io.Writer

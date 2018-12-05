@@ -38,16 +38,16 @@ func Test_Code(t *testing.T) {
 var (
 	ErrDataInvalid = derrors.New("Error! Data Invalid")
 	ErrConnect     = errors.New("Error! 原生err")
-	ErrUserInvalid = derrors.New("Error! User Invalid")
+	ErrUserInvalid = derrors.New("[Round] Error! User Invalid")
 )
 
 // # 測試1
 
 func CallErrTypeFn(id string) error {
 	if id != "" {
-		return ErrDataInvalid.Write("錯誤內容: 'id' 不能是預設值" + id)
+		return ErrDataInvalid.Write("錯誤內容: 'id' 不能是預設值" + id) // Roger error套件
 	}
-	return ErrConnect
+	return ErrConnect // 原生error
 }
 
 // # 測試2 規則: 自己判斷錯誤,可以加入Write函數來寫需要顯示的參數,如果是調用其他方法在同樣規則下則不要在紀錄,不然訊息會很亂

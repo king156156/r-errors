@@ -15,6 +15,7 @@ type RError interface {
 	ErrorPath() string
 	Err() RError
 	Clear()
+	Log() RError
 }
 
 // Error 錯誤訊息
@@ -73,7 +74,7 @@ func generateCallerList(callerLevel int) string {
 		caller.WriteString(strconv.Itoa(line))
 
 		callers.WriteString(caller.String())
-		callers.WriteString("\n")
+		// callers.WriteString("\n")
 	}
 
 	return callers.String()
@@ -84,4 +85,10 @@ func getCallerLevels(callerLevel int) int {
 		return callerLevel
 	}
 	return startCallerLevel + (callerLevel - 1)
+}
+
+// Log 印log
+func (e *Error) Log() RError {
+	mylog.Error(e.Error())
+	return e
 }
